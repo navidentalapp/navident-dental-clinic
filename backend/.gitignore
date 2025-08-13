@@ -1,0 +1,23 @@
+# Maven build output
+/target/
+
+# Maven wrapper files
+/.mvn/
+
+# IDE and editor files
+*.iml
+.idea/
+*.ipr
+*.iws
+*.vscode/
+
+# Logs
+logs/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Spring Boot specific
+application-prod.properties
