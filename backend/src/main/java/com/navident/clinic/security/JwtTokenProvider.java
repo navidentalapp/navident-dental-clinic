@@ -1,15 +1,14 @@
 package com.navident.clinic.security;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.SecretKey;
-import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Date;
 
 @Component
@@ -20,43 +19,37 @@ public class JwtTokenProvider {
     private String jwtSecret;
 
     @Value("${app.jwt.expiration-ms}")
-    private int jwtExpirationMs;
+    private long jwtExpirationMs;
 
-    private SecretKey key;
-
-    @PostConstruct
-    public void init() {
-        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
-    }
-
+    // Generate token from Authentication object
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
-        Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtExpirationMs);
+        Date expiryDate = new Date(System.currentTimeMillis() + jwtExpirationMs);
 
         return Jwts.builder()
                 .setSubject(username)
-                .setIssuedAt(now)
+                .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
-                .signWith(key, SignatureAlgorithm.HS512)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
+    // ✅ ADDED MISSING METHOD: Generate token from username string
     public String generateTokenFromUsername(String username) {
-        Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + jwtExpirationMs);
+        Date expiryDate = new Date(System.currentTimeMillis() + jwtExpirationMs);
 
         return Jwts.builder()
                 .setSubject(username)
-                .setIssuedAt(now)
+                .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
-                .signWith(key, SignatureAlgorithm.HS512)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
+    // Get username from JWT token
     public String getUsernameFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
-                .setSigningKey(key)
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -64,24 +57,48 @@ public class JwtTokenProvider {
         return claims.getSubject();
     }
 
+    // Validate JWT token
     public boolean validateToken(String authToken) {
         try {
             Jwts.parserBuilder()
-                .setSigningKey(key)
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(authToken);
             return true;
-        } catch (SecurityException ex) {
-            log.error("Invalid JWT signature: {}", ex.getMessage());
         } catch (MalformedJwtException ex) {
-            log.error("Invalid JWT token: {}", ex.getMessage());
+            log.error("Invalid JWT token");
         } catch (ExpiredJwtException ex) {
-            log.error("Expired JWT token: {}", ex.getMessage());
+            log.error("Expired JWT token");
         } catch (UnsupportedJwtException ex) {
-            log.error("Unsupported JWT token: {}", ex.getMessage());
+            log.error("Unsupported JWT token");
         } catch (IllegalArgumentException ex) {
-            log.error("JWT claims string is empty: {}", ex.getMessage());
+            log.error("JWT claims string is empty");
+        } catch (Exception ex) {
+            log.error("JWT token validation error", ex);
         }
         return false;
+    }
+
+    // Get expiration date from token
+    public Date getExpirationDateFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.getExpiration();
+    }
+
+    // Check if token is expired
+    public boolean isTokenExpired(String token) {
+        Date expiration = getExpirationDateFromToken(token);
+        return expiration.before(new Date());
+    }
+
+    // Get signing key
+    private Key getSigningKey() {
+        byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 }
