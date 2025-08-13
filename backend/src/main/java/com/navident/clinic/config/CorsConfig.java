@@ -8,7 +8,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class CorsConfig {
@@ -35,26 +34,17 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Set allowed origins
-        if ("*".equals(allowedOrigins)) {
+        // Parse and set origins
+        if ("*".equals(allowedOrigins.trim())) {
             configuration.setAllowedOriginPatterns(Arrays.asList("*"));
         } else {
             configuration.setAllowedOrigins(Arrays.asList(allowedOrigins.split(",")));
         }
         
-        // Set allowed methods
         configuration.setAllowedMethods(Arrays.asList(allowedMethods.split(",")));
-        
-        // Set allowed headers
         configuration.setAllowedHeaders(Arrays.asList(allowedHeaders.split(",")));
-        
-        // Set exposed headers
         configuration.setExposedHeaders(Arrays.asList(exposedHeaders.split(",")));
-        
-        // Set credentials
         configuration.setAllowCredentials(allowCredentials);
-        
-        // Set max age
         configuration.setMaxAge(maxAge);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
