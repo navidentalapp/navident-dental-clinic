@@ -10,6 +10,7 @@ D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\service\impl
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\service\AppointmentService.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\dto\InsuranceDto.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\Appointment.java
+D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\dto\LoginRequest.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\dto\TreatmentDto.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\service\UserService.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\Prescription.java
@@ -59,6 +60,7 @@ D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\exception\In
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\PatientController.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\dto\PrescriptionDto.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\AuthController.java
+D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\HealthController.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\dto\AuthResponse.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\repository\DentistRepository.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\InsuranceController.java

@@ -12,6 +12,7 @@ com\navident\clinic\service\InsuranceService.class
 com\navident\clinic\controller\AuthController.class
 com\navident\clinic\controller\InsuranceController.class
 com\navident\clinic\repository\PrescriptionRepository.class
+com\navident\clinic\model\dto\AuthResponse$AuthResponseBuilder.class
 com\navident\clinic\repository\ClinicFinanceRepository.class
 com\navident\clinic\repository\DentistRepository.class
 com\navident\clinic\service\impl\DentistServiceImpl.class
@@ -25,6 +26,7 @@ com\navident\clinic\service\PrescriptionService.class
 com\navident\clinic\model\Patient$Address.class
 com\navident\clinic\model\dto\DentistDto.class
 com\navident\clinic\controller\PrescriptionController.class
+com\navident\clinic\model\dto\LoginRequest.class
 com\navident\clinic\util\PdfUtil$DocumentWriter.class
 com\navident\clinic\controller\BillController.class
 com\navident\clinic\config\MongoConfig.class
@@ -38,6 +40,7 @@ com\navident\clinic\config\ValidationConfig.class
 com\navident\clinic\service\impl\AppointmentServiceImpl.class
 com\navident\clinic\model\ClinicFinance$ClinicFinanceBuilder.class
 com\navident\clinic\model\Prescription$PrescriptionBuilder.class
+com\navident\clinic\controller\HealthController.class
 com\navident\clinic\model\Bill$BillBuilder.class
 com\navident\clinic\security\CustomAccessDeniedHandler.class
 com\navident\clinic\model\dto\AuthRequest.class
