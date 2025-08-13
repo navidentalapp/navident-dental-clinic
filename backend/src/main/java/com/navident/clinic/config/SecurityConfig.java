@@ -29,17 +29,26 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource))
+        http
+            // Enable CORS with your custom configuration
+            .cors(cors -> cors.configurationSource(corsConfigurationSource))
+            // Disable CSRF since JWT is stateless
             .csrf(csrf -> csrf.disable())
+            // Set custom authentication entry point to handle unauthorized access
             .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
+            // No session; stateless JWT tokens
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            // Set authorization rules
             .authorizeHttpRequests(auth -> auth
+                // Permit all requests to these paths without authentication
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/health").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
+                // Any other request requires authentication
                 .anyRequest().authenticated()
             );
 
+        // Add JWT filter before the UsernamePasswordAuthenticationFilter
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
