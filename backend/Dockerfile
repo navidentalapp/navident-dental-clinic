@@ -10,9 +10,6 @@ COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 
-# Make mvnw executable
-RUN chmod +x ./mvnw
-
 # Download dependencies
 RUN ./mvnw dependency:go-offline -B
 
@@ -29,6 +26,9 @@ WORKDIR /app
 
 # Copy JAR from builder stage
 COPY --from=builder /app/target/*.jar app.jar
+
+# Set the MongoDB URI and default database via environment variable
+ENV SPRING_DATA_MONGODB_URI="mongodb+srv://navidentalpg:25MhnHa4JeJIo8aZ@cluster0.rwxhhmt.mongodb.net/navident_clinic?retryWrites=true&w=majority&appName=Cluster0"
 
 # Expose port
 EXPOSE 8080
