@@ -25,6 +25,7 @@ public class NavidentClinicApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         log.info("=== CONFIGURATION DEBUG ===");
         log.info("MongoDB URI: {}", mongoUri.substring(0, Math.min(mongoUri.length(), 50)) + "...");
+        log.info(">> Effective spring.data.mongodb.uri = {}", mongoUri);
         log.info("CORS Origins: {}", corsOrigins);
         log.info("Active Profiles: {}", System.getProperty("spring.profiles.active"));
         log.info("=== END CONFIGURATION DEBUG ===");
