@@ -1,17 +1,27 @@
-import api from './api';
+import axios from 'axios';
 
-export const authService = {
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://navident-backend-mnm9.onrender.com';
+
+const authService = {
   login: (credentials) => {
-    return api.post('/auth/signin', credentials);
+    return axios.post(`${API_BASE_URL}/api/auth/login`, credentials);
   },
   
-  register: (userData) => {
-    return api.post('/auth/signup', userData);
-  },
-  
-  refreshToken: (username) => {
-    return api.post('/auth/refresh', null, {
-      params: { username }
+  refresh: (token) => {
+    return axios.post(`${API_BASE_URL}/api/auth/refresh`, {}, {
+      headers: { Authorization: `Bearer ${token}` }
     });
+  },
+  
+  getCurrentUser: (token) => {
+    return axios.get(`${API_BASE_URL}/api/auth/me`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+  },
+  
+  logout: () => {
+    return axios.post(`${API_BASE_URL}/api/auth/logout`);
   }
 };
+
+export { authService };
