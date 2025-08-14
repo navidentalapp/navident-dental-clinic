@@ -1,45 +1,35 @@
 package com.navident.clinic.model;
 
-import lombok.*;
-import org.springframework.data.annotation.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.util.List;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
-@Document(collection = "patients")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Document(collection = "patients")
 public class Patient {
     @Id
     private String id;
+    
     private String firstName;
     private String lastName;
     private String email;
-    private String mobileNumber;
+    private String phoneNumber;
+    private String address;
+    private LocalDate dateOfBirth;
     private String gender;
-    private String bloodGroup;
-    private String dateOfBirth;
-    private List<String> allergies;
-    private Address address;
-
-    @CreatedDate
+    private String emergencyContact;
+    private String medicalHistory;
+    private String allergies;
+    private String insurance;
+    private boolean active = true;
+    
     private LocalDateTime createdAt;
-    @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    // Nested class for address common in healthcare record systems
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
-    public static class Address {
-        private String street;
-        private String city;
-        private String state;
-        private String postalCode;
-        private String country;
-    }
 }
