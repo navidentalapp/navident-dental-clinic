@@ -15,7 +15,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -30,14 +29,12 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
         try {
             log.info("Login attempt for username: {}", loginRequest.getUsername());
 
-            // Defensive check: ensure credentials are present.
             if (loginRequest.getUsername() == null || loginRequest.getUsername().isBlank() ||
                 loginRequest.getPassword() == null || loginRequest.getPassword().isBlank()) {
                 log.warn("Login failed - missing username or password");
@@ -51,6 +48,7 @@ public class AuthController {
                             loginRequest.getPassword()
                     )
             );
+
             String jwt = jwtTokenProvider.generateToken(authentication);
 
             Optional<User> userOptional = userService.getUserByUsername(loginRequest.getUsername());
@@ -105,7 +103,6 @@ public class AuthController {
             }
 
             String username = jwtTokenProvider.getUsernameFromToken(token);
-
             String newToken = jwtTokenProvider.generateTokenFromUsername(username);
 
             Optional<User> userOptional = userService.getUserByUsername(username);
@@ -158,7 +155,7 @@ public class AuthController {
             }
 
             User user = userOptional.get();
-            user.setPassword(null); // Don't expose password in response
+            user.setPassword(null);
 
             return ResponseEntity.ok(user);
 
@@ -171,7 +168,6 @@ public class AuthController {
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout() {
-        // For JWT, logout is handled on client by removing token
         return ResponseEntity.ok("Logged out successfully");
     }
 }
