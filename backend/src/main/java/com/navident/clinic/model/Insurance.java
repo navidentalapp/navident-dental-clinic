@@ -1,35 +1,34 @@
 package com.navident.clinic.model;
 
-import lombok.*;
-import org.springframework.data.annotation.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.math.BigDecimal;
 
 @Data
-@Document(collection = "insurances")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Document(collection = "insurance")
 public class Insurance {
     @Id
     private String id;
+    
     private String patientId;
     private String agencyName;
     private String policyNumber;
     private LocalDate policyEndDate;
-    private boolean active;
-    private boolean claimSubmitted;
-    private boolean claimApproved;
+    private String status;
+    private boolean claimSubmitted = false;
     private BigDecimal claimAmount;
-    private BigDecimal approvedClaimAmount;
-    private String status; // ACTIVE, EXPIRED, CLAIMED, APPROVED
     private String treatmentDescription;
-
-    @CreatedDate
+    private boolean claimApproved = false;
+    private BigDecimal approvedClaimAmount;
+    
     private LocalDateTime createdAt;
-    @LastModifiedDate
     private LocalDateTime updatedAt;
 }
