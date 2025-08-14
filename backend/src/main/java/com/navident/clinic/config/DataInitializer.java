@@ -1,39 +1,41 @@
 package com.navident.clinic.config;
 
-import com.navident.clinic.model.User;
-import com.navident.clinic.repository.UserRepository;
+import com.navident.clinic.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
-@Configuration
+@Component
 @RequiredArgsConstructor
+@Slf4j
 public class DataInitializer implements CommandLineRunner {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
 
     @Override
     public void run(String... args) {
-        createIfNotExists("administrator", "admin@navident.com", "admin123", "ROLE_ADMIN");
-        createIfNotExists("chiefdentist", "chiefdentist@navident.com", "chief123", "ROLE_CHIEFDENTIST");
-        createIfNotExists("clinicassistant", "clinicassistant@navident.com", "assistant123", "ROLE_CLINICASSISTANT");
-        createIfNotExists("printingonly", "printing@navident.com", "print123", "ROLE_PRINTINGONLY");
+        createDefaultUsers();
     }
 
-    private void createIfNotExists(String username, String email, String rawPassword, String role) {
-        Optional<User> userOptional = userRepository.findByUsername(username);
-        if (userOptional.isEmpty()) {
-            User user = new User();
-            user.setUsername(username);
-            user.setEmail(email);
-            user.setPassword(passwordEncoder.encode(rawPassword));
-            user.setRole(role);
-            userRepository.save(user);
-            System.out.println("Created default user: " + username);
+    private void createDefaultUsers() {
+        createUserIfNotExists("administrator", "admin123", "admin@navident.com", 
+                              "Admin", "User", "ROLE_ADMIN");
+        createUserIfNotExists("chiefdentist", "chief123", "chiefdentist@navident.com", 
+                              "Chief", "Dentist", "ROLE_CHIEFDENTIST");
+        createUserIfNotExists("clinicassistant", "assistant123", "clinicassistant@navident.com", 
+                              "Clinic", "Assistant", "ROLE_CLINICASSISTANT");
+        createUserIfNotExists("printingonly", "print123", "printing@navident.com", 
+                              "Printing", "User", "ROLE_PRINTINGONLY");
+    }
+
+    private void createUserIfNotExists(String username, String password, String email, 
+                                       String firstName, String lastName, String role) {
+        if (!userService.existsByUsername(username)) {
+            userService.createUser(username, password, email, firstName, lastName, role);
+            log.info("Created default user: {}", username);
+        } else {
+            log.info("User already exists: {}", username);
         }
     }
 }
