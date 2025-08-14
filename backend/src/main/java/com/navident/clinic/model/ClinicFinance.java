@@ -1,31 +1,31 @@
 package com.navident.clinic.model;
 
-import lombok.*;
-import org.springframework.data.annotation.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.math.BigDecimal;
 
 @Data
-@Document(collection = "finances")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Document(collection = "clinic_finance")
 public class ClinicFinance {
     @Id
     private String id;
-    private LocalDate transactionDate;
-    private String category; // REVENUE, EXPENSE
-    private String type; // Consultation, Supplies, Salary, etc.
-    private BigDecimal amount;
-    private String vendorName;
+    
     private String description;
+    private BigDecimal amount;
+    private String category;
+    private String type; // INCOME or EXPENSE
+    private LocalDate transactionDate;
+    private String vendorName;
     private String status;
-
-    @CreatedDate
+    
     private LocalDateTime createdAt;
-    @LastModifiedDate
     private LocalDateTime updatedAt;
 }
