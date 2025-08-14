@@ -1,12 +1,10 @@
-// frontend/src/services/authService.js
 import axios from 'axios';
 
-// Keep REACT_APP_API_URL in Render static site env vars pointing to your backend URL
 const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 export const authService = {
   login: (credentials) => {
-    // ✅ Now matches backend AuthController @PostMapping("/login") under /api/auth
+    // ✅ now matches backend: POST /api/auth/login
     return axios.post(`${API_BASE_URL}/api/auth/login`, credentials);
   },
 
