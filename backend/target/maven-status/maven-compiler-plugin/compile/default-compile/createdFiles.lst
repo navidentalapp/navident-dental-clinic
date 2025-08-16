@@ -38,6 +38,7 @@ com\navident\clinic\config\ValidationConfig.class
 com\navident\clinic\service\impl\AppointmentServiceImpl.class
 com\navident\clinic\model\ClinicFinance$ClinicFinanceBuilder.class
 com\navident\clinic\model\Prescription$PrescriptionBuilder.class
+com\navident\clinic\controller\HealthController.class
 com\navident\clinic\model\Bill$BillBuilder.class
 com\navident\clinic\security\CustomAccessDeniedHandler.class
 com\navident\clinic\model\dto\AuthRequest.class

@@ -59,6 +59,7 @@ D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\exception\In
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\PatientController.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\dto\PrescriptionDto.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\AuthController.java
+D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\HealthController.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\dto\AuthResponse.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\repository\DentistRepository.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\InsuranceController.java
