@@ -1,0 +1,12 @@
+[build]
+builder = "dockerfile"
+buildCommand = "echo 'Building with Dockerfile'"
+
+[deploy]
+healthcheckPath = "/api/health/ping"
+healthcheckTimeout = 30
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[env]
+PORT = "8080"
