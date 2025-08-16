@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# exit on error
 set -o errexit
 
-echo "Starting NAVIDENT Backend..."
-java -jar -Dspring.profiles.active=prod target/*.jar
-# Check if the build was successful
+echo "🏥 Starting NAVIDENT Dental Clinic Backend..."
+
+# Start the application
+java -jar -Dspring.profiles.active=prod target/navident-backend-1.0.0.jar

@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
-# exit on error
 set -o errexit
 
-echo "Starting Maven build..."
-./mvnw clean install -DskipTests
+echo "🚀 Starting NAVIDENT Backend Build..."
 
-echo "Build completed successfully!"
-# Check if the build was successful
+# Make mvnw executable
+chmod +x ./mvnw
+
+# Clean and build
+echo "📦 Building application..."
+./mvnw clean package -DskipTests
+
+echo "✅ Build completed successfully!"
+ls -la target/*.jar
