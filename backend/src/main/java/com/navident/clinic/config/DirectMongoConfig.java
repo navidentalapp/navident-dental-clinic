@@ -17,10 +17,9 @@ public class DirectMongoConfig {
         
         if (mongoUri == null || mongoUri.isEmpty()) {
             // FALLBACK: Use your actual Atlas URI here
-            mongoUri = "mongodb+srv://your-username:your-password@your-cluster.mongodb.net/?retryWrites=true&w=majority";
+            mongoUri = "${MONGODB_URI}";
         }
         
-        System.out.println("Connecting to MongoDB: " + mongoUri.substring(0, 30) + "...");
         return MongoClients.create(mongoUri);
     }
 
