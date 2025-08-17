@@ -2,7 +2,6 @@
 target/
 
 # Spring Boot
-application-*.properties
 !application.properties.template
 
 # IDE
