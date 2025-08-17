@@ -1,17 +1,23 @@
 package com.navident.clinic;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 
 @SpringBootApplication
-@Slf4j
 public class NavidentClinicApplication {
 
     public static void main(String[] args) {
-        log.info("Starting NAVIDENT Dental Clinic Management System...");
+        // Debug environment variables
+        String mongoUri = System.getenv("MONGODB_URI");
+        System.out.println("MONGODB_URI from environment: " + mongoUri);
+        
+        if (mongoUri == null || mongoUri.contains("localhost")) {
+            System.err.println("WARNING: MongoDB URI not set properly!");
+            System.err.println("Current URI: " + mongoUri);
+        }
+
         SpringApplication.run(NavidentClinicApplication.class, args);
-        System.out.println("MONGODB_URI: " + System.getenv("MONGODB_URI"));
-        log.info("NAVIDENT Dental Clinic Management System started successfully!");
     }
 }
