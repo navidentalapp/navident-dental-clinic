@@ -11,6 +11,7 @@ public class NavidentClinicApplication {
     public static void main(String[] args) {
         log.info("Starting NAVIDENT Dental Clinic Management System...");
         SpringApplication.run(NavidentClinicApplication.class, args);
+        System.out.println("MONGODB_URI: " + System.getenv("MONGODB_URI"));
         log.info("NAVIDENT Dental Clinic Management System started successfully!");
     }
 }
