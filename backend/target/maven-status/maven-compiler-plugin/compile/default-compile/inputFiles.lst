@@ -38,6 +38,7 @@ D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\User.j
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\service\impl\UserServiceImpl.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\service\PatientService.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\exception\DuplicateResourceException.java
+D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\config\DatabaseDebugger.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\repository\UserRepository.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\service\FinanceService.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\util\PdfUtil.java
@@ -50,6 +51,7 @@ D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\repository\I
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\config\DataInitializer.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\config\ValidationConfig.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\Patient.java
+D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\config\DirectMongoConfig.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\PrescriptionController.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\repository\AppointmentRepository.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\config\MongoAuditingConfig.java
@@ -70,6 +72,7 @@ D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\controller\U
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\model\Bill.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\repository\PrescriptionRepository.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\security\CustomAccessDeniedHandler.java
+D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\config\EnvironmentConfig.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\service\impl\AppointmentServiceImpl.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\service\InsuranceService.java
 D:\navident-dental-clinic\backend\src\main\java\com\navident\clinic\exception\ResourceNotFoundException.java
