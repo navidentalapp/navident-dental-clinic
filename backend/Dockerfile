@@ -25,6 +25,6 @@ EXPOSE 8080
 
 # Set environment variable for Spring profile
 ENV SPRING_PROFILES_ACTIVE=prod
-
+ENV spring.data.mongodb.uri=mongodb+srv://navidentalpg:25MhnHa4JeJIo8aZ@cluster0.rwxhhmt.mongodb.net/navident_clinic?retryWrites=true&w=majority
 # Command to run the application
 CMD ["java", "-jar", "target/navident-backend-1.0.0.jar"]
