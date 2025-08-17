@@ -24,7 +24,7 @@ RUN ./mvnw clean package -DskipTests
 EXPOSE 8080
 
 # Set environment variable for Spring profile
-ENV SPRING_PROFILES_ACTIVE=prod
-ENV spring.data.mongodb.uri=mongodb+srv://navidentalpg:aWgxdKMompdOTHRZ@navident.iwrvz0r.mongodb.net/?retryWrites=true&w=majority&appName=navident
+#ENV SPRING_PROFILES_ACTIVE=prod
+#ENV spring.data.mongodb.uri=mongodb+srv://navidentalpg:aWgxdKMompdOTHRZ@navident.iwrvz0r.mongodb.net/?retryWrites=true&w=majority&appName=navident
 # Command to run the application
 CMD ["java", "-jar", "target/navident-backend-1.0.0.jar"]
