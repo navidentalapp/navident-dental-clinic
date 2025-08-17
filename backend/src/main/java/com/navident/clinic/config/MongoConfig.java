@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 @Configuration
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-    @Value("${MONGODB_URI:mongodb+srv://navidentalpg:aWgxdKMompdOTHRZ@navident.iwrvz0r.mongodb.net/?retryWrites=true&w=majority&appName=navident}")
+    @Value("${MONGODB_URI:mongodb+srv://navidentalpg:aWgxdKMompdOTHRZ@navident.iwrvz0r.mongodb.net/navident_clinic?retryWrites=true&w=majority&appName=navident}")
     private String mongoUri;
 
     @Override
