@@ -17,9 +17,8 @@ public class DatabaseDebugger implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("=== DATABASE CONNECTION DEBUG ===");
+        System.out.println("=== CONNECTION DEBUG ===");
         System.out.println("Active profiles: " + String.join(",", env.getActiveProfiles()));
-        System.out.println("MongoDB URI from env: " + env.getProperty("spring.data.mongodb.uri"));
         System.out.println("Database name: " + mongoTemplate.getDb().getName());
         System.out.println("=================================");
     }
